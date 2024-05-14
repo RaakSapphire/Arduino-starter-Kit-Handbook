@@ -1,0 +1,17 @@
+#include <Stepper.h>
+#define STEPS 64
+Stepper stepper(STEPS, 8, 10, 9, 11);
+int Pval = 0;
+int potVal = 0;
+void setup() {
+    Serial.begin(9600);
+    stepper.setSpeed(200);
+}
+void loop() {
+    potVal = map(analogRead(A0), 0, 1023, 0, 500); // Changed 1024 to 1023
+    if (potVal > Pval)
+        stepper.step(1); // Changed setp to step
+    if (potVal < Pval)
+        stepper.step(-1); // Changed setp to step
+    Pval = potVal; // Corrected variable name to Pval
+}
