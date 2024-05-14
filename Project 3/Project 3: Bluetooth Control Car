@@ -1,0 +1,80 @@
+#include <SoftwareSerial.h>
+
+SoftwareSerial bluetoothSerial(9, 10); // RX, TX
+
+// Define motor control pins
+int enableA = 5;  // Enable Pin for motor A
+int motorA1 = 2;  // Motor A Terminal 1
+int motorA2 = 3;  // Motor A Terminal 2
+int enableB = 6;  // Enable Pin for motor B
+int motorB1 = 4;  // Motor B Terminal 1
+int motorB2 = 7;  // Motor B Terminal 2
+
+char command;
+
+void setup() {
+  // Set motor pins as output
+  pinMode(enableA, OUTPUT);
+  pinMode(motorA1, OUTPUT);
+  pinMode(motorA2, OUTPUT);
+  pinMode(enableB, OUTPUT);
+  pinMode(motorB1, OUTPUT);
+  pinMode(motorB2, OUTPUT);
+
+  // Start serial communication with Bluetooth module
+  bluetoothSerial.begin(9600);
+}
+
+void loop() {
+  if (bluetoothSerial.available() > 0) {
+    command = bluetoothSerial.read();
+
+    Stop(); // Initialize with motors stopped
+
+    switch (command) {
+      case 'F':
+        forward();
+        break;
+      case 'B':
+        back();
+        break;
+      case 'L':
+        left();
+        break;
+      case 'R':
+        right();
+        break;
+    }
+  }
+}
+
+void motorControl(int enablePin, int pin1, int pin2, int speed, bool direction) {
+  analogWrite(enablePin, speed);
+  digitalWrite(pin1, direction);
+  digitalWrite(pin2, !direction);
+}
+
+void forward() {
+  motorControl(enableA, motorA1, motorA2, 255, HIGH);
+  motorControl(enableB, motorB1, motorB2, 255, HIGH);
+}
+
+void back() {
+  motorControl(enableA, motorA1, motorA2, 255, LOW);
+  motorControl(enableB, motorB1, motorB2, 255, LOW);
+}
+
+void left() {
+  motorControl(enableA, motorA1, motorA2, 255, LOW);
+  motorControl(enableB, motorB1, motorB2, 255, HIGH);
+}
+
+void right() {
+  motorControl(enableA, motorA1, motorA2, 255, HIGH);
+  motorControl(enableB, motorB1, motorB2, 255, LOW);
+}
+
+void Stop() {
+  motorControl(enableA, motorA1, motorA2, 0, LOW);
+  motorControl(enableB, motorB1, motorB2, 0, LOW);
+}
