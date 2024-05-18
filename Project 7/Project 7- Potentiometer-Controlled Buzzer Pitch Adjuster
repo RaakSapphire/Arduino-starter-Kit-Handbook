@@ -1,0 +1,16 @@
+int potPin = A0; // Potentiometer output connected to Analog pin A0
+int buzzerPin = 9; // Buzzer connected to Digital pin 9
+int potVal = 0;  // Variable to store the input from the potentiometer
+int toneFreq = 0; // Variable to store the buzzer frequency
+
+void setup() {
+  pinMode(buzzerPin, OUTPUT); // Set the buzzer as an output
+}
+
+void loop() {
+  potVal = analogRead(potPin); // Read the value from the potentiometer
+  toneFreq = map(potVal, 0, 1023, 200, 2000); // Convert the potentiometer value to a frequency range
+  
+  tone(buzzerPin, toneFreq); // Play sound on buzzer
+  delay(10); // Short delay to stabilize readings
+}
