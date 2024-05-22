@@ -1,0 +1,71 @@
+const int ledPin1 = 13;  // Define pin for the first LED
+const int ledPin2 = 12;  // Define pin for the second LED
+const int ledPin3 = 11;  // Define pin for the third LED
+const int ledPin4 = 10;  // Define pin for the fourth LED
+const int ledPin5 = 9;   // Define pin for the fifth LED
+
+void setup() { 
+    pinMode(ledPin1, OUTPUT);  // Set the first LED pin as output
+    pinMode(ledPin2, OUTPUT);  // Set the second LED pin as output
+    pinMode(ledPin3, OUTPUT);  // Set the third LED pin as output
+    pinMode(ledPin4, OUTPUT);  // Set the fourth LED pin as output
+    pinMode(ledPin5, OUTPUT);  // Set the fifth LED pin as output
+}
+
+void loop() {
+    // Step 1: LED1 on, others off
+    digitalWrite(ledPin1, HIGH);
+    digitalWrite(ledPin2, LOW);
+    digitalWrite(ledPin3, LOW);
+    digitalWrite(ledPin4, LOW);
+    digitalWrite(ledPin5, LOW);
+    delay(300);  // Wait for 0.3 second
+
+    // Step 2: LED2 on, others off
+    digitalWrite(ledPin1, LOW);
+    digitalWrite(ledPin2, HIGH);
+    digitalWrite(ledPin3, LOW);
+    digitalWrite(ledPin4, LOW);
+    digitalWrite(ledPin5, LOW);
+    delay(300);  // Wait for 0.3 second
+
+    // Step 3: LED3 on, others off
+    digitalWrite(ledPin1, LOW);
+    digitalWrite(ledPin2, LOW);
+    digitalWrite(ledPin3, HIGH);
+    digitalWrite(ledPin4, LOW);
+    digitalWrite(ledPin5, LOW);
+    delay(300);  // Wait for 0.3 second
+
+    // Step 4: LED4 on, others off
+    digitalWrite(ledPin1, LOW);
+    digitalWrite(ledPin2, LOW);
+    digitalWrite(ledPin3, LOW);
+    digitalWrite(ledPin4, HIGH);
+    digitalWrite(ledPin5, LOW);
+    delay(300);  // Wait for 0.3 second
+
+    // Step 5: LED5 on, others off
+    digitalWrite(ledPin1, LOW);
+    digitalWrite(ledPin2, LOW);
+    digitalWrite(ledPin3, LOW);
+    digitalWrite(ledPin4, LOW);
+    digitalWrite(ledPin5, HIGH);
+    delay(300);  // Wait for 0.3 second
+
+    // Step 6: All LEDs on
+    digitalWrite(ledPin1, HIGH);
+    digitalWrite(ledPin2, HIGH);
+    digitalWrite(ledPin3, HIGH);
+    digitalWrite(ledPin4, HIGH);
+    digitalWrite(ledPin5, HIGH);
+    delay(300);  // Wait for 0.3 second
+
+    // Step 7: All LEDs off
+    digitalWrite(ledPin1, LOW);
+    digitalWrite(ledPin2, LOW);
+    digitalWrite(ledPin3, LOW);
+    digitalWrite(ledPin4, LOW);
+    digitalWrite(ledPin5, LOW);
+    delay(300);  // Wait for 0.3 second
+}
